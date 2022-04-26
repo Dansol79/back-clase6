@@ -17,19 +17,10 @@ app.get('/', (req, res) => {
     );
 })
 
-app.get('/productos', (req, res) => {
-    const arrProductos = Product.getAll();
-    arrProductos.then(productos => {
-       const conteProductos = JSON.stringify(productos,null,2);
-       res.type('json');
-         res.send(conteProductos);
-           
-    });
-    // res.send(`
-    //     
-    //     <ul>
-    //         ${Product.productos.map(producto => `<li>${producto.title}</li>`)}
-    //         </ul>`)
+app.get('/productos', async (req, res) => {
+    const arrProductos =  await Product.getAll();
+    res.send(arrProductos);
+    
      });
     
 
